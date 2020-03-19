@@ -33,5 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        CharSequence charSequence = savedInstanceState.getCharSequence("textView", "Default");
+        textView.setText(charSequence);
     }
 }
