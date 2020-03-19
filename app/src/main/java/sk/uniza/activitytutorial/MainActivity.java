@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-
+        outState.putCharSequence("textView", textView.getText());
     }
 
     @Override
