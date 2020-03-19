@@ -19,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textView);
         checkBox = findViewById(R.id.checkBox2);
+
+        boolean aBoolean = getPreferences(MODE_PRIVATE).getBoolean("CheckBox", false);
+        checkBox.setChecked(aBoolean);
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
