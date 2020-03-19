@@ -40,5 +40,9 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(charSequence);
     }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getPreferences(MODE_PRIVATE).edit().putBoolean("CheckBox", checkBox.isChecked()).commit();
+    }
 }
