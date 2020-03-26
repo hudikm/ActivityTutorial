@@ -1,0 +1,72 @@
+[
+    {
+        "commitTag": "1.0",
+        "commitMsg": "Zmena layoutu",
+        "commitHash": "3e48d42a0c12214f66927fd6389c6defdcdce34d",
+        "commitDiff": "diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml\nindex 4fc2444..5c9429e 100644\n--- a/app/src/main/res/layout/activity_main.xml\n+++ b/app/src/main/res/layout/activity_main.xml\n@@ -1,18 +1,15 @@\n <?xml version=\"1.0\" encoding=\"utf-8\"?>\n-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n-    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n+<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n     xmlns:tools=\"http://schemas.android.com/tools\"\n     android:layout_width=\"match_parent\"\n     android:layout_height=\"match_parent\"\n+    android:orientation=\"vertical\"\n     tools:context=\".MainActivity\">\n \n     <TextView\n+        android:id=\"@+id/textView\"\n         android:layout_width=\"wrap_content\"\n         android:layout_height=\"wrap_content\"\n-        android:text=\"Hello World!\"\n-        app:layout_constraintBottom_toBottomOf=\"parent\"\n-        app:layout_constraintLeft_toLeftOf=\"parent\"\n-        app:layout_constraintRight_toRightOf=\"parent\"\n-        app:layout_constraintTop_toTopOf=\"parent\" />\n+        android:text=\"Hello World!\" />\n \n-</androidx.constraintlayout.widget.ConstraintLayout>\n\\ No newline at end of file\n+</LinearLayout>\n\\ No newline at end of file\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.2",
+        "commitMsg": "Pridame nove komponenty",
+        "commitHash": "a394ada4ffaa5476e6055dde67fac952d980bb1f",
+        "commitDiff": "diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml\nindex 5c9429e..10f78d0 100644\n--- a/app/src/main/res/layout/activity_main.xml\n+++ b/app/src/main/res/layout/activity_main.xml\n@@ -12,4 +12,30 @@\n         android:layout_height=\"wrap_content\"\n         android:text=\"Hello World!\" />\n \n+    <CheckBox\n+        android:id=\"@+id/checkBox2\"\n+        android:layout_width=\"match_parent\"\n+        android:layout_height=\"wrap_content\"\n+        android:text=\"CheckBox\" />\n+\n+    <Button\n+        android:id=\"@+id/button\"\n+        android:layout_width=\"match_parent\"\n+        android:layout_height=\"wrap_content\"\n+        android:text=\"Button\" />\n+\n+    <EditText\n+        android:id=\"@+id/editText\"\n+        android:layout_width=\"match_parent\"\n+        android:layout_height=\"wrap_content\"\n+        android:ems=\"10\"\n+        android:inputType=\"textPersonName\"\n+        android:text=\"Name\" />\n+\n+    <Button\n+        android:id=\"@+id/button2\"\n+        android:layout_width=\"match_parent\"\n+        android:layout_height=\"wrap_content\"\n+        android:text=\"Search\" />\n+\n </LinearLayout>\n\\ No newline at end of file\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.3",
+        "commitMsg": "TextView zmeni text",
+        "commitHash": "f7c6f3275d2418cc41330c258978b7fff8a19794",
+        "commitDiff": "diff --git a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\nindex 800ac43..1187d1b 100644\n--- a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n+++ b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n@@ -1,14 +1,25 @@\n package sk.uniza.activitytutorial;\n \n import android.os.Bundle;\n+import android.view.View;\n+import android.widget.TextView;\n \n import androidx.appcompat.app.AppCompatActivity;\n \n public class MainActivity extends AppCompatActivity {\n \n+    private TextView textView;\n+\n     @Override\n     protected void onCreate(Bundle savedInstanceState) {\n         super.onCreate(savedInstanceState);\n         setContentView(R.layout.activity_main);\n+        textView = findViewById(R.id.textView);\n+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {\n+            @Override\n+            public void onClick(View v) {\n+                textView.setText(\"Ahoj Svet\");\n+            }\n+        });\n     }\n }\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.4",
+        "commitMsg": "Doplnime funkcie Save & RestoreInstanceState",
+        "commitHash": "a6b160e5861563d7ebac7fd72f309764693bc300",
+        "commitDiff": "diff --git a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\nindex 1187d1b..f3b3079 100644\n--- a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n+++ b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n@@ -4,6 +4,7 @@ import android.os.Bundle;\n import android.view.View;\n import android.widget.TextView;\n \n+import androidx.annotation.NonNull;\n import androidx.appcompat.app.AppCompatActivity;\n \n public class MainActivity extends AppCompatActivity {\n@@ -22,4 +23,15 @@ public class MainActivity extends AppCompatActivity {\n             }\n         });\n     }\n+\n+    @Override\n+    public void onSaveInstanceState(@NonNull Bundle outState) {\n+        super.onSaveInstanceState(outState);\n+\n+    }\n+\n+    @Override\n+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {\n+        super.onRestoreInstanceState(savedInstanceState);\n+    }\n }\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.5",
+        "commitMsg": "Ulozit hodnotu textView",
+        "commitHash": "ad53a387f5ba737c524d2eb97427b046369861c6",
+        "commitDiff": "diff --git a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\nindex f3b3079..7d29261 100644\n--- a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n+++ b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {\n     @Override\n     public void onSaveInstanceState(@NonNull Bundle outState) {\n         super.onSaveInstanceState(outState);\n-\n+        outState.putCharSequence(\"textView\", textView.getText());\n     }\n \n     @Override\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.6",
+        "commitMsg": "Nacitanie ulozenych dat",
+        "commitHash": "8f45565e7d3d702c2ecdad78a30f01e83c469440",
+        "commitDiff": "diff --git a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\nindex 7d29261..6e09679 100644\n--- a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n+++ b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n@@ -33,5 +33,7 @@ public class MainActivity extends AppCompatActivity {\n     @Override\n     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {\n         super.onRestoreInstanceState(savedInstanceState);\n+        CharSequence charSequence = savedInstanceState.getCharSequence(\"textView\", \"Default\");\n+        textView.setText(charSequence);\n     }\n }\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.7",
+        "commitMsg": "Najdenie instancie checkboxu",
+        "commitHash": "d5aa1fbc6a2b03ebb92d2ed5023a3ce3467d21f4",
+        "commitDiff": "diff --git a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\nindex 6e09679..2eb689a 100644\n--- a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n+++ b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n@@ -2,6 +2,7 @@ package sk.uniza.activitytutorial;\n \n import android.os.Bundle;\n import android.view.View;\n+import android.widget.CheckBox;\n import android.widget.TextView;\n \n import androidx.annotation.NonNull;\n@@ -10,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;\n public class MainActivity extends AppCompatActivity {\n \n     private TextView textView;\n+    private CheckBox checkBox;\n \n     @Override\n     protected void onCreate(Bundle savedInstanceState) {\n         super.onCreate(savedInstanceState);\n         setContentView(R.layout.activity_main);\n         textView = findViewById(R.id.textView);\n+        checkBox = findViewById(R.id.checkBox2);\n         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {\n             @Override\n             public void onClick(View v) {\n@@ -36,4 +39,6 @@ public class MainActivity extends AppCompatActivity {\n         CharSequence charSequence = savedInstanceState.getCharSequence(\"textView\", \"Default\");\n         textView.setText(charSequence);\n     }\n+\n+\n }\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.8",
+        "commitMsg": "Trvale ulozenie nastavenia checkBoxu",
+        "commitHash": "ce6f63a72d2b1bf942eabb558954fc1902dc3bd3",
+        "commitDiff": "diff --git a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\nindex 2eb689a..cc73339 100644\n--- a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n+++ b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n@@ -40,5 +40,9 @@ public class MainActivity extends AppCompatActivity {\n         textView.setText(charSequence);\n     }\n \n-\n+    @Override\n+    protected void onPause() {\n+        super.onPause();\n+        getPreferences(MODE_PRIVATE).edit().putBoolean(\"CheckBox\", checkBox.isChecked()).commit();\n+    }\n }\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "1.9",
+        "commitMsg": "Obnovenie ulozenych nastaveni",
+        "commitHash": "2350f2cbe9eb88ce87e4dca872a871ea6a5849c0",
+        "commitDiff": "diff --git a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\nindex cc73339..d5faa13 100644\n--- a/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n+++ b/app/src/main/java/sk/uniza/activitytutorial/MainActivity.java\n@@ -19,6 +19,10 @@ public class MainActivity extends AppCompatActivity {\n         setContentView(R.layout.activity_main);\n         textView = findViewById(R.id.textView);\n         checkBox = findViewById(R.id.checkBox2);\n+\n+        boolean aBoolean = getPreferences(MODE_PRIVATE).getBoolean(\"CheckBox\", false);\n+        checkBox.setChecked(aBoolean);\n+\n         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {\n             @Override\n             public void onClick(View v) {\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    },
+    {
+        "commitTag": "2.0",
+        "commitMsg": "Pridaná nová aktivita",
+        "commitHash": "10950d95f6f460e6b47cd954ba98303b1b86b866",
+        "commitDiff": "diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml\nindex b51b9cb..d6a1e1a 100644\n--- a/app/src/main/AndroidManifest.xml\n+++ b/app/src/main/AndroidManifest.xml\n@@ -9,6 +9,7 @@\n         android:roundIcon=\"@mipmap/ic_launcher_round\"\n         android:supportsRtl=\"true\"\n         android:theme=\"@style/AppTheme\">\n+        <activity android:name=\".Main2Activity\"></activity>\n         <activity android:name=\".MainActivity\">\n             <intent-filter>\n                 <action android:name=\"android.intent.action.MAIN\" />\ndiff --git a/app/src/main/java/sk/uniza/activitytutorial/Main2Activity.java b/app/src/main/java/sk/uniza/activitytutorial/Main2Activity.java\nnew file mode 100644\nindex 0000000..45ee666\n--- /dev/null\n+++ b/app/src/main/java/sk/uniza/activitytutorial/Main2Activity.java\n@@ -0,0 +1,14 @@\n+package sk.uniza.activitytutorial;\n+\n+import android.os.Bundle;\n+\n+import androidx.appcompat.app.AppCompatActivity;\n+\n+public class Main2Activity extends AppCompatActivity {\n+    //    Nová aktivyta, pretože ľščťžýá\n+    @Override\n+    protected void onCreate(Bundle savedInstanceState) {\n+        super.onCreate(savedInstanceState);\n+        setContentView(R.layout.activity_main2);\n+    }\n+}\ndiff --git a/app/src/main/res/layout/activity_main2.xml b/app/src/main/res/layout/activity_main2.xml\nnew file mode 100644\nindex 0000000..0ef1421\n--- /dev/null\n+++ b/app/src/main/res/layout/activity_main2.xml\n@@ -0,0 +1,8 @@\n+<?xml version=\"1.0\" encoding=\"utf-8\"?>\n+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n+    xmlns:tools=\"http://schemas.android.com/tools\"\n+    android:layout_width=\"match_parent\"\n+    android:layout_height=\"match_parent\"\n+    tools:context=\".Main2Activity\">\n+\n+</androidx.constraintlayout.widget.ConstraintLayout>\n\\ No newline at end of file\n",
+        "remoteUrl": "https://github.com/hudikm/ActivityTutorial2.git"
+    }
+]
